@@ -1,0 +1,34 @@
+name = "waf-analytics"
+main = "functions/api/[[route]].ts"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "out"
+
+[site]
+bucket = "./out"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "waf-analytics-db"
+database_id = ""
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "waf-analytics-files"
+
+[vars]
+AUTH_TOKEN = "yourownauth"
+ENABLE_R2_STORAGE = "true"
+MAX_BATCH_SIZE = "1000"
+MAX_FILE_SIZE_MB = "50"
+
+[env.production]
+name = "waf-analytics-prod"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "waf-analytics-db-prod"
+database_id = "YOUR_PROD_DATABASE_ID"
+
+[[env.production.r2_buckets]]
+binding = "R2"
+bucket_name = "waf-analytics-files-prod"
